@@ -1,56 +1,24 @@
-class Car {
-    protected id?: string;
-    protected model: string;
-    protected year: number;
-    protected color: string;
-    protected status?: boolean;
-    protected buyValue: number;
-    private doorsQty: number;
-    private seatsQty: number;
+import ICar from '../Interfaces/ICar';
+import Vehicle from './Vehicle';
+
+class Car extends Vehicle {
+  private doorsQty: number;
+  private seatsQty: number;
     
-    constructor(
-        id: string | undefined, 
-        model: string, 
-        year: number, 
-        color: string,
-        status = false,
-        buyValue: number,
-        doorsQty: number,
-        seatsQty: number) {
-            this.id = id;
-            this.model = model;
-            this.year = year;
-            this.color = color;
-            this.status = status;
-            this.buyValue = buyValue;
-            this.doorsQty =doorsQty;
-            this.seatsQty = seatsQty;
-        }
-
-        public getYear() { return this.year; }
-        public setYear(value: number) { this.year = value; }
-
-        public getColor() { return this.color; }
-        public setColor(value: string) { this.color = value; }
-
-        public getBuyValue() { return this.buyValue; }
-        public setBuyValue(value: number) { this.buyValue = value; }
-
-        public getDoorsQty() { return this.doorsQty ;}
-        public setDoorsQty(value: number) { this.doorsQty = value; }
-
-        public getSeatsQty() { return this.seatsQty; }
-        public setSeatsQty(value: number) { this.seatsQty = value; }
-
-        public getModel() { return this.model; }
-        public setModel(model: string) { this.model = model; }
-
-        public getStatus() { return this.status; }
-        public setStatus(status: boolean) { this.status = status; }
-        
-        public setId(id: string) { this.id = id; }
-        public getId() { return this.id; }
-
+  constructor(
+    car: ICar,
+  ) {
+    super({ 
+      id: car.id,
+      model: car.model,
+      year: car.year,
+      color: car.color,
+      buyValue: car.buyValue,
+      status: car.status || false,
+    });
+    this.doorsQty = car.doorsQty;
+    this.seatsQty = car.seatsQty;
+  }
 }
 
 export default Car;
