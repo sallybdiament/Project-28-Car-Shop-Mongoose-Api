@@ -34,7 +34,7 @@ class CarServices {
   public async update(id: string, car: ICar) {
     const carODM = new CarODM();
     const updatedCar = await carODM.update(id, car);
-    // if (!cars) throw new Error('Car not found');
+    if (!updatedCar) throw new Error('Car not found');
     return this.createCarDomain(updatedCar);
   }
 }
