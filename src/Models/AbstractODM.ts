@@ -43,12 +43,13 @@ abstract class AbstractODM<T> {
     const check = regex.test(_id);
     if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
-    const updated = this.model.findByIdAndUpdate(
+    const find = await this.model.find({ _id });
+    if (find.length === 0) throw new ErrorResponse(404, 'Car not found');
+    const updated = await this.model.findByIdAndUpdate(
       { _id },
       { ...obj } as UpdateQuery<T>,
       { new: true },
     );
-    if (!updated) throw new ErrorResponse(404, 'Car not found');
     return updated;
   }
 
