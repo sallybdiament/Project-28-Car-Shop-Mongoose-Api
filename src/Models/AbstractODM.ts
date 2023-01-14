@@ -9,6 +9,8 @@ import {
 import ErrorResponse from '../Middleware/ErrorResponse';
     
 const messageInvalidMongoId = 'Invalid mongo id';
+// const carNotFound = 'Car not found';
+const motoNotFound = 'Motorcycle not found';
 abstract class AbstractODM<T> {
   protected model: Model<T>;
   protected schema: Schema;
@@ -34,7 +36,7 @@ abstract class AbstractODM<T> {
     if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
     const vehicleFound = await this.model.find({ _id });
-    if (vehicleFound.length === 0) throw new ErrorResponse(404, 'Motorcycle not found');
+    if (vehicleFound.length === 0) throw new ErrorResponse(404, motoNotFound);
     return vehicleFound;
   }
 
@@ -44,7 +46,7 @@ abstract class AbstractODM<T> {
     if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
     const find = await this.model.find({ _id });
-    if (find.length === 0) throw new ErrorResponse(404, 'Motorcycle not found');
+    if (find.length === 0) throw new ErrorResponse(404, motoNotFound);
     const updated = await this.model.findByIdAndUpdate(
       { _id },
       { ...obj } as UpdateQuery<T>,
@@ -56,7 +58,7 @@ abstract class AbstractODM<T> {
   public async delete(_id: string) {
     if (!isValidObjectId(_id)) throw new ErrorResponse(422, 'Invalid Mongo id');
     const find = await this.model.find({ _id });
-    if (find.length === 0) throw new ErrorResponse(404, 'Motorcycle not found');
+    if (find.length === 0) throw new ErrorResponse(404, motoNotFound);
     return this.model.deleteOne({ _id });
   }
 }
