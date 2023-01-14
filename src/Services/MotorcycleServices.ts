@@ -37,6 +37,11 @@ class MotorcycleServices {
     if (!updatedMoto) throw new Error('Car not found');
     return this.createCarDomain(updatedMoto);
   }
+
+  public async delete(id: string) {
+    const carODM = new MotorcycleODM();
+    return carODM.delete(id);
+  }
 }
 
 export default MotorcycleServices;

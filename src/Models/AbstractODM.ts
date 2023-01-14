@@ -54,7 +54,9 @@ abstract class AbstractODM<T> {
   }
 
   public async delete(_id: string) {
-    if (!isValidObjectId(_id)) throw Error('Invalid Mongo id');
+    if (!isValidObjectId(_id)) throw new ErrorResponse(422, 'Invalid Mongo id');
+    const find = await this.model.find({ _id });
+    if (find.length === 0) throw new ErrorResponse(404, 'Car not found');
     return this.model.deleteOne({ _id });
   }
 }
