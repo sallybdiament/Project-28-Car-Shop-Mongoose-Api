@@ -19,7 +19,7 @@ routes.get(
   (req, res, next) => new CarController(req, res, next).findById(),
 );
 
-routes.patch(
+routes.put(
   '/cars/:id',
   (req, res, next) => new CarController(req, res, next).update(),
 );
@@ -39,7 +39,7 @@ routes.get(
   (req, res, next) => new MotorcycleController(req, res, next).findById(),
 );
 
-routes.patch(
+routes.put(
   '/motorcycles/:id',
   (req, res, next) => new MotorcycleController(req, res, next).update(),
 );
