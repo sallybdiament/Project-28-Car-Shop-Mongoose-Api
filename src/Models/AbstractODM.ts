@@ -6,6 +6,7 @@ import {
   UpdateQuery,
   model,
 } from 'mongoose';
+import ErrorResponse from '../Middleware/ErrorResponse';
     
 const messageInvalidMongoId = 'Invalid mongo id';
 abstract class AbstractODM<T> {
@@ -30,24 +31,24 @@ abstract class AbstractODM<T> {
   public async findById(_id: string): Promise<T[] | null> {
     const regex = /^[0-9a-fA-F]{24}$/;
     const check = regex.test(_id);
-    if (!check) throw Error(messageInvalidMongoId);
+    if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
     const vehicleFound = await this.model.find({ _id });
-    if (vehicleFound.length === 0) throw Error('Car not found');
+    if (vehicleFound.length === 0) throw new ErrorResponse(404, 'Car not found');
     return vehicleFound;
   }
 
   public async update(_id: string, obj: Partial<T>): Promise<T | null> {
     const regex = /^[0-9a-fA-F]{24}$/;
     const check = regex.test(_id);
-    if (!check) throw Error(messageInvalidMongoId);
+    if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
     const updated = this.model.findByIdAndUpdate(
       { _id },
       { ...obj } as UpdateQuery<T>,
       { new: true },
     );
-    if (!updated) throw Error('Car not found');
+    if (!updated) throw ErrorResponse(404, 'Car not found');
     return updated;
   }
 
