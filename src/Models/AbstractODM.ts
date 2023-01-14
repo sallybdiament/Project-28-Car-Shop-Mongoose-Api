@@ -36,7 +36,7 @@ abstract class AbstractODM<T> {
     if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
     const vehicleFound = await this.model.find({ _id });
-    if (vehicleFound.length === 0) throw new ErrorResponse(404, motoNotFound);
+    // if (vehicleFound.length === 0) throw new ErrorResponse(404, motoNotFound);
     return vehicleFound;
   }
 

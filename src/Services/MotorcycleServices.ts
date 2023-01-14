@@ -1,6 +1,9 @@
 import Motorcycle from '../Domains/Motorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleODM from '../Models/MotorcycleODM';
+import ErrorResponse from '../Middleware/ErrorResponse';
+
+const motoNotFound = 'Motorcycle not found';
 
 class MotorcycleServices {
   private createCarDomain(motorcycle: IMotorcycle | null): Motorcycle | null {
@@ -27,6 +30,7 @@ class MotorcycleServices {
     const motorcycleODM = new MotorcycleODM();
     const motos = await motorcycleODM.findById(id);
     if (!motos) throw new Error('Car not found');
+    if (motos.length === 0) throw new ErrorResponse(404, motoNotFound);
     const motosArr = motos.map((motorcycle) => this.createCarDomain(motorcycle));
     return motosArr[0];
   }
@@ -34,7 +38,7 @@ class MotorcycleServices {
   public async update(id: string, motorcycle: IMotorcycle) {
     const motorcycleODM = new MotorcycleODM();
     const updatedMoto = await motorcycleODM.update(id, motorcycle);
-    if (!updatedMoto) throw new Error('Car not found');
+    if (!updatedMoto) throw new ErrorResponse(404, motoNotFound);
     return this.createCarDomain(updatedMoto);
   }
 
