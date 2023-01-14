@@ -43,8 +43,11 @@ class MotorcycleServices {
   }
 
   public async delete(id: string) {
-    const carODM = new MotorcycleODM();
-    return carODM.delete(id);
+    const motorcycleODM = new MotorcycleODM();
+    const motos = await motorcycleODM.findById(id);
+    if (!motos) throw new Error('Car not found');
+    if (motos.length === 0) throw new ErrorResponse(404, motoNotFound);
+    return motorcycleODM.delete(id);
   }
 }
 
