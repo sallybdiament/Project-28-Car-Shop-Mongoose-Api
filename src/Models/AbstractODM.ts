@@ -34,7 +34,7 @@ abstract class AbstractODM<T> {
     if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
     const vehicleFound = await this.model.find({ _id });
-    if (vehicleFound.length === 0) throw new ErrorResponse(404, 'Car not found');
+    if (vehicleFound.length === 0) throw new ErrorResponse(404, 'Motorcycle not found');
     return vehicleFound;
   }
 
@@ -44,7 +44,7 @@ abstract class AbstractODM<T> {
     if (!check) throw new ErrorResponse(422, messageInvalidMongoId);
     // if (!isValidObjectId(_id)) throw Error('Car not found');
     const find = await this.model.find({ _id });
-    if (find.length === 0) throw new ErrorResponse(404, 'Car not found');
+    if (find.length === 0) throw new ErrorResponse(404, 'Motorcycle not found');
     const updated = await this.model.findByIdAndUpdate(
       { _id },
       { ...obj } as UpdateQuery<T>,
@@ -56,7 +56,7 @@ abstract class AbstractODM<T> {
   public async delete(_id: string) {
     if (!isValidObjectId(_id)) throw new ErrorResponse(422, 'Invalid Mongo id');
     const find = await this.model.find({ _id });
-    if (find.length === 0) throw new ErrorResponse(404, 'Car not found');
+    if (find.length === 0) throw new ErrorResponse(404, 'Motorcycle not found');
     return this.model.deleteOne({ _id });
   }
 }
