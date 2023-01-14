@@ -48,7 +48,7 @@ abstract class AbstractODM<T> {
       { ...obj } as UpdateQuery<T>,
       { new: true },
     );
-    if (!updated) throw ErrorResponse(404, 'Car not found');
+    if (!updated) throw new ErrorResponse(404, 'Car not found');
     return updated;
   }
 
