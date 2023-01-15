@@ -179,22 +179,7 @@ describe('Testa os serviços de carro', function () {
       }
     },
   );
-  //   it('Deveria retornar um body no detele com sucesso', async function () {
-  //     const inputCar: ICar = {
-  //       model: 'Marea',
-  //       year: 2002,
-  //       color: 'Black',
-  //       status: true,
-  //       buyValue: 15.990,
-  //       doorsQty: 4,
-  //       seatsQty: 5,
-  //     };
-
-  //     sinon.stub(Model, 'findByIdAndUpdate').resolves();
-  //     const service = new CarServices();
-  //     const result = await service.delete('63c447122a23bfb21569a044');
-
-  //     expect(result).to.be.deep.equal();
+  //   it('Deveria detelar com sucesso', async function () {  
   //   });
   it(
     'Deveria retornar um erro no delete caso o Id passado não esteja no formato mongo id', 
