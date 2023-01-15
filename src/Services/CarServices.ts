@@ -45,6 +45,7 @@ class CarServices {
   public async delete(id: string) {
     const carODM = new CarODM();
     const cars = await carODM.findById(id);
+    // console.log(cars);
     if (!cars) throw new Error(carNotFound);
     if (cars.length === 0) throw new ErrorResponse(404, carNotFound);
     return carODM.delete(id);

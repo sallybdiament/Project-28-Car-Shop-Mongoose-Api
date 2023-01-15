@@ -58,6 +58,7 @@ abstract class AbstractODM<T> {
     if (!isValidObjectId(_id)) throw new ErrorResponse(422, 'Invalid Mongo id');
     // const find = await this.model.find({ _id });
     // if (find.length === 0) throw new ErrorResponse(404, motoNotFound);
+    // console.log(this.model.deleteOne({ _id }));
     return this.model.deleteOne({ _id });
   }
 }
