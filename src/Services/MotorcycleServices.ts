@@ -6,11 +6,12 @@ import ErrorResponse from '../Middleware/ErrorResponse';
 const motoNotFound = 'Motorcycle not found';
 
 class MotorcycleServices {
-  private createCarDomain(motorcycle: IMotorcycle | null): Motorcycle | null {
-    if (motorcycle) {
-      return new Motorcycle(motorcycle);
-    }
-    return null;
+  private createCarDomain(motorcycle: IMotorcycle): Motorcycle {
+  // private createCarDomain(motorcycle: IMotorcycle | null): Motorcycle | null {
+    // if (motorcycle) {
+    return new Motorcycle(motorcycle);
+    // }
+    // return null;
   }
 
   public async create(motorcycle: IMotorcycle) {
@@ -45,8 +46,8 @@ class MotorcycleServices {
   public async delete(id: string) {
     const motorcycleODM = new MotorcycleODM();
     const motos = await motorcycleODM.findById(id);
-    if (!motos) throw new Error('Car not found');
-    if (motos.length === 0) throw new ErrorResponse(404, motoNotFound);
+    if (!motos) throw new Error(motoNotFound);
+    // if (motos.length === 0) throw new ErrorResponse(404, motoNotFound);
     return motorcycleODM.delete(id);
   }
 }

@@ -195,21 +195,18 @@ describe('Testa os serviços de Motorcycle', function () {
       }
     },
   );
-  //   it(
-  //     'Deveria retornar um erro no delete caso o Id passado não seja encontrado no banco de dados', 
-  //     async function () {  
-  //       const outputMotorcycleDeleted = {
-  //         deleteResult: 1, acknowledged: true, deletedCount: 1,
-  //       };       
-  //       sinon.stub(Model, 'deleteOne').resolves(outputMotorcycleDeleted);
-  //       try {
-  //         const service = new MotorcycleServices();
-  //         await service.delete('63c447122a23bfb21569a044');
-  //       } catch (error) { 
-  //         expect((error as Error).message).to.be.equal(MotorcycleNotFound);
-  //       } 
-  //     },
-  //   );
+  it(
+    'Deveria retornar um erro no delete caso o Id passado não seja encontrado no banco de dados', 
+    async function () {    
+      sinon.stub(Model, 'find').resolves();
+      try {
+        const service = new MotorcycleServices();
+        await service.delete('63c447122a23bfb21569a044');
+      } catch (error) { 
+        expect((error as Error).message).to.be.equal(MotorcycleNotFound);
+      } 
+    },
+  );
   afterEach(function () {
     sinon.restore();
   });

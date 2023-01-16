@@ -179,8 +179,8 @@ describe('Testa os serviços de carro', function () {
       }
     },
   );
-  //   it('Deveria detelar com sucesso', async function () {  
-  //   });
+  // it('Deveria detelar com sucesso', async function () {  
+  // });
   it(
     'Deveria retornar um erro no delete caso o Id passado não esteja no formato mongo id', 
     async function () {
@@ -197,21 +197,18 @@ describe('Testa os serviços de carro', function () {
       }
     },
   );
-  //   it(
-  //     'Deveria retornar um erro no delete caso o Id passado não seja encontrado no banco de dados', 
-  //     async function () {  
-  //       const outputCarDeleted = {
-  //         deleteResult: 1, acknowledged: true, deletedCount: 1,
-  //       };       
-  //       sinon.stub(Model, 'deleteOne').resolves(outputCarDeleted);
-  //       try {
-  //         const service = new CarServices();
-  //         await service.delete('63c447122a23bfb21569a044');
-  //       } catch (error) { 
-  //         expect((error as Error).message).to.be.equal(carNotFound);
-  //       } 
-  //     },
-  //   );
+  it(
+    'Deveria retornar um erro no delete caso o Id passado não seja encontrado no banco de dados', 
+    async function () {       
+      sinon.stub(Model, 'find').resolves();
+      try {
+        const service = new CarServices();
+        await service.delete('63c447122a23bfb21569a044');
+      } catch (error) { 
+        expect((error as Error).message).to.be.equal(carNotFound);
+      } 
+    },
+  );
   afterEach(function () {
     sinon.restore();
   });

@@ -6,11 +6,12 @@ import ErrorResponse from '../Middleware/ErrorResponse';
 const carNotFound = 'Car not found';
 
 class CarServices {
-  private createCarDomain(car: ICar | null): Car | null {
-    if (car) {
-      return new Car(car);
-    }
-    return null;
+  // private createCarDomain(car: ICar | null): Car | null {
+  private createCarDomain(car: ICar): Car {
+    // if (car) {
+    return new Car(car);
+    // }
+    // return null;
   }
 
   public async create(car: ICar) {
