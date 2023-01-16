@@ -177,8 +177,28 @@ describe('Testa os serviços de Motorcycle', function () {
       }
     },
   );
-  //   it('Deveria detelar com sucesso', async function () {  
-  //   });
+  it('Deveria detelar com sucesso', async function () {  
+    const outputMotoDeleted = {
+      deleteResult: 1, acknowledged: true, deletedCount: 1,
+    };    
+    const outputMoto: Motorcycle = new Motorcycle(
+      {
+        id: '63c447122a23bfb21569a044',
+        model: 'Honda Cb',
+        year: 2005,
+        color: 'Yellow',
+        status: true,
+        buyValue: 30.000,
+        category: 'Street',
+        engineCapacity: 600,
+      },
+    );
+    sinon.stub(Model, 'find').resolves([outputMoto]);
+    sinon.stub(Model, 'deleteOne').resolves(outputMotoDeleted);
+    const service = new MotorcycleServices();
+    const result = await service.delete('63c447122a23bfb21569a044');
+    expect(result).to.be.deep.equal(outputMotoDeleted);
+  });
   it(
     'Deveria retornar um erro no delete caso o Id passado não esteja no formato mongo id', 
     async function () {
