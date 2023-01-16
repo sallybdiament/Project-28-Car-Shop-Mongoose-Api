@@ -30,8 +30,8 @@ class CarServices {
   public async findById(id: string) {
     const carODM = new CarODM();
     const cars = await carODM.findById(id);
-    if (!cars) throw new Error(carNotFound);
-    if (cars.length === 0) throw new ErrorResponse(404, carNotFound);
+    if (!cars || cars.length === 0) throw new ErrorResponse(404, carNotFound);
+    // if (cars.length === 0) throw new ErrorResponse(404, carNotFound);
     const carArray = cars.map((car) => this.createCarDomain(car));
     return carArray[0];
   }
@@ -46,9 +46,8 @@ class CarServices {
   public async delete(id: string) {
     const carODM = new CarODM();
     const cars = await carODM.findById(id);
-    // console.log(cars);
-    if (!cars) throw new Error(carNotFound);
-    if (cars.length === 0) throw new ErrorResponse(404, carNotFound);
+    if (!cars) throw new ErrorResponse(404, carNotFound);
+    // if (cars.length === 0) throw new ErrorResponse(404, carNotFound);
     return carODM.delete(id);
   }
 }

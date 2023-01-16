@@ -30,8 +30,8 @@ class MotorcycleServices {
   public async findById(id: string) {
     const motorcycleODM = new MotorcycleODM();
     const motos = await motorcycleODM.findById(id);
-    if (!motos) throw new Error('Motorcycle not found');
-    if (motos.length === 0) throw new ErrorResponse(404, motoNotFound);
+    if (!motos || motos.length === 0) throw new ErrorResponse(404, 'Motorcycle not found');
+    // if (motos.length === 0) throw new ErrorResponse(404, motoNotFound);
     const motosArr = motos.map((motorcycle) => this.createCarDomain(motorcycle));
     return motosArr[0];
   }
