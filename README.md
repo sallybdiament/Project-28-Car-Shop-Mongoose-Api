@@ -34,7 +34,7 @@ Projeto 28 da [Trybe](https://wwww.betrybe.com), módulo de Back-End.
 
 <details>
   <summary><strong>🐳 Rodando no Docker vs Localmente</strong></summary>
-  
+
 #### 2 - Subir os containers `car_shop` e `car_shop_db` utilizando o docker-compose
 
 Na raíz do projeto: ```docker-compose up -d```
@@ -49,16 +49,17 @@ Sem Docker: Node e o MongoDB já instalados na sua máquina.
 
 No terminal do container: ```npm install```
 
-#### 5 - Criar e popular o banco de dados:
+#### 5 - Executar a aplicação Node com nodemon:
 
-Criando as tabelas: ```npm run prestart```
+```npm run dev```
 
-Populando o banco com dados: ```npm run seed```
+#### 6 - Executar os testes:
 
-#### 6 - Executar a aplicação Node com nodemon:
+```npm run test:mocha```
 
-```npm run debug```
+#### 6 - Verificar cobertura dos testes:
 
+```npm run test:coverage```
 #### \*Foi utilizado o Thunder Client como cliente de requisições HTTP\*
 
 ## Tecnologias
