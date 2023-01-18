@@ -9,6 +9,7 @@ Com endpoints conectados ao banco de dados seguindo os princípios do REST.
 
 Projeto 28 da [Trybe](https://wwww.betrybe.com), módulo de Back-End.
 
+![Score Project](./score-project.png)
 ## O Projeto
 
 * Criação de uma `AbstractModel` que reune todas as solicitações ao banco com comandos mongoose.
@@ -27,37 +28,32 @@ Projeto 28 da [Trybe](https://wwww.betrybe.com), módulo de Back-End.
 
 ```git clone git@github.com:sallybdiament/Project-28-Car-Shop-Mongoose-Api.git```
 
-
-
-
-```npm install```
-
 <details>
   <summary><strong>🐳 Rodando no Docker vs Localmente</strong></summary>
 
-#### 2 - Subir os containers `car_shop` e `car_shop_db` utilizando o docker-compose
+#### Subir os containers `car_shop` e `car_shop_db` utilizando o docker-compose
 
 Na raíz do projeto: ```docker-compose up -d```
 
-#### 3 - Abrir o terminal do container `car_shop`
+#### Abrir o terminal do container `car_shop`
 
 ```docker exec -it car_shop bash```
 </details>
 
-Sem Docker: Node e o MongoDB já instalados na sua máquina.
-#### 4 - Instalar as dependências
+**Sem Docker: Node e o MongoDB já instalados na sua máquina.**
+#### 2 - Instalar as dependências
 
 No terminal do container: ```npm install```
 
-#### 5 - Executar a aplicação Node com nodemon:
+#### 3 - Executar a aplicação Node com nodemon:
 
 ```npm run dev```
 
-#### 6 - Executar os testes:
+#### 4 - Executar os testes:
 
 ```npm run test:mocha```
 
-#### 6 - Verificar cobertura dos testes:
+#### 5 - Verificar cobertura dos testes:
 
 ```npm run test:coverage```
 #### \*Foi utilizado o Thunder Client como cliente de requisições HTTP\*
